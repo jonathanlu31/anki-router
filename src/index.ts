@@ -13,6 +13,9 @@
 
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
-		return new Response('Hello World!');
+		const url = new URL(request.url);
+		const lowerPath = url.pathname.toLowerCase();
+		const newUrl = "https://geology.com" + lowerPath;
+		return fetch(newUrl, request);
 	},
 } satisfies ExportedHandler<Env>;
